@@ -33,9 +33,9 @@ public class ListaProductosxComprar
     }
 
     /*inserta un nuevo nodo al inicio de la lista*/
-    public void InsertarInicio(String pDireccion, boolean pEnvio,boolean pFacturacion) 
+    public void InsertarInicio(int pCantidad,NodoProducto pProducto) 
     {
-    	NodoProductoxComprar nuevo = new NodoProductoxComprar( pDireccion, pEnvio, pFacturacion);
+    	NodoProductoxComprar nuevo = new NodoProductoxComprar(pCantidad, pProducto);
         if ( EstaVacia() ) 
         {
             Cabeza = nuevo;
@@ -48,9 +48,9 @@ public class ListaProductosxComprar
     }
 
     //inserta un nuevo nodo al final de la lista
-    public void InsertarFinal(String pDireccion, boolean pEnvio,boolean pFacturacion) 
+    public void InsertarFinal(int pCantidad,NodoProducto pProducto) 
     {
-    	NodoProductoxComprar nuevo = new NodoProductoxComprar( pDireccion, pEnvio, pFacturacion);
+    	NodoProductoxComprar nuevo = new NodoProductoxComprar(pCantidad, pProducto);
         if ( EstaVacia() ) 
         {
             Cabeza = nuevo;
@@ -101,14 +101,14 @@ public class ListaProductosxComprar
         }
     }
 
-    //devuelve una referencia al nodo buscado con su nickname, si no se encuentra devuelve null
-    public NodoProductoxComprar ObtBuscar(String pDireccion) 
+    //devuelve una referencia al nodo buscado con su Producto, si no se encuentra devuelve null
+    public NodoProductoxComprar ObtBuscar(NodoProducto pProducto) 
     {
     	NodoProductoxComprar buscado = null;
     	NodoProductoxComprar iterador = Cabeza;
         while ( buscado == null && iterador != null ) 
         {
-            if ( iterador.ObtDireccion().equals(pDireccion)) 
+            if ( iterador.ObtProducto().equals(pProducto)) 
             {
                 buscado = iterador;
                 break;
@@ -124,7 +124,7 @@ public class ListaProductosxComprar
     	NodoProductoxComprar iterador = Cabeza;
         while ( iterador != null ) 
         {
-            System.out.print( iterador.ObtDireccion() + " -> " );
+            System.out.print( iterador.ObtProducto().ObtCodigo() + " -> " );
             iterador = iterador.ObtNodoSiguiente();
         }
         System.out.println( "null" );

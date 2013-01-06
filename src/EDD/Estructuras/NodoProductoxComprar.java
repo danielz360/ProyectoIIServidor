@@ -5,49 +5,40 @@ public class NodoProductoxComprar
 {
 	private String NickNameUsuario;
 	private int Cantidad;
+	private NodoProducto Producto;
 	private NodoProductoxComprar NodoSig;
 	private NodoProductoxComprar NodoAnt;
 	
-	/**Constructor
-	 * @pNombre Nombre del Usuario
-	 * @pNickName NickName del Usuario
-	 * @pContrasena Contrasena del Usuario
-	 * @pNodoAnt Nodo Padre 
-	 * */
-	public NodoProductoxComprar(String pDireccion, boolean pEnvio,boolean pFacturacion) 
+	/**
+	 * 
+	 * @param pCantidad
+	 * @param pProducto
+	 */
+	public NodoProductoxComprar(int pCantidad, NodoProducto pProducto) 
 	{
 		// TODO Auto-generated constructor stub
-		Direccion = pDireccion;
-		Envio = pEnvio;
-		pFacturacion = Facturacion;
+		Cantidad = pCantidad;
+		Producto = pProducto;
 		NodoAnt = null;
 		NodoSig = null;
 	}
 	
-	public String ObtDireccion()
+	public int ObtCantidad()
 	{
-		return Direccion;
+		return Cantidad;
 	}
-	public void SetDireccion(String pDireccion)
+	public void SetCantidad(int pCantidad)
 	{
-		Direccion = pDireccion;
+		Cantidad = pCantidad;
 	}
 	
-	public boolean ObtEnvio()
+	public NodoProducto ObtProducto()
 	{
-		return Envio;
+		return Producto;
 	}
-	public void SetEnvio(boolean pEnvio)
+	public void SetProducto(NodoProducto pProducto)
 	{
-		Envio = pEnvio;
-	}
-	public boolean ObtFacturacion()
-	{
-		return Facturacion;
-	}
-	public void SetFacturacion(boolean pFacturacion)
-	{
-		Facturacion = pFacturacion;
+		Producto = pProducto;
 	}
 	
 	public NodoProductoxComprar ObtNodoSiguiente()

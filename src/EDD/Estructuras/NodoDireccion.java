@@ -8,12 +8,13 @@ public class NodoDireccion
 	private NodoDireccion NodoSig;
 	private NodoDireccion NodoAnt;
 	
-	/**Constructor
-	 * @pNombre Nombre del Usuario
-	 * @pNickName NickName del Usuario
-	 * @pContrasena Contrasena del Usuario
-	 * @pNodoAnt Nodo Padre 
-	 * */
+	/**
+	* 
+	* @param pDireccion
+	* @param pEnvio
+	* @param pFacturacion
+	*/
+	
 	public NodoDireccion(String pDireccion, boolean pEnvio,boolean pFacturacion) 
 	{
 		// TODO Auto-generated constructor stub
