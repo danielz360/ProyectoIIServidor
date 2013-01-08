@@ -117,7 +117,12 @@ public class TablaHashProducto
 			NodoProducto nodo = this.ObtBuscar(Integer.parseInt(Codigo[a]),AuxTabla,AuxBorrados);
 			if(nodo != null)
 			{
-				this.Insertar(nodo.ObtCodigo(), nodo.ObtNombre(), nodo.ObtMarca(), nodo.ObtPrecio(), nodo.ObtUrlImagen());	
+				this.Insertar(nodo.ObtCodigo(), nodo.ObtNombre(), nodo.ObtMarca(), nodo.ObtPrecio(), nodo.ObtUrlImagen());
+				
+				if(this.EstabaBorrado(nodo.ObtCodigo(), AuxTabla, AuxBorrados))
+				{
+					this.Borrar(nodo.ObtCodigo());
+				}
 			}			
 		}
 	}
@@ -173,7 +178,34 @@ public class TablaHashProducto
         n++;
     }
     
-
+	/**
+	 * Verifica si un producto habia sido borrado de una tabla especifica
+	 * @param pLlave
+	 * @param pTabla
+	 * @param pBorrados
+	 * @return
+	 */
+    public boolean EstabaBorrado(int pLlave, NodoProducto [] pTabla,int [] pBorrados)
+    {
+    	int indice = FuncionHash(pLlave,pTabla.length);    	            	
+    	
+    	int intentos = 0;
+        while (pTabla[indice].ObtCodigo() != pLlave)
+        {
+        	intentos++;
+        	indice = this.FuncionReHash(pLlave, indice, intentos);       
+        	
+        	//Para hacerlo circular
+        	while(indice > pTabla.length){indice = indice - pTabla.length;}
+        }    	
+        
+        if(pBorrados[indice] == 1)
+        {
+        	return true;
+        }
+        return false;
+    }
+    
     public void Borrar(int pLlave)
     {
     	int indice = FuncionHash(pLlave,Tabla.length);    	            	
@@ -190,7 +222,7 @@ public class TablaHashProducto
         
         if(Borrados[indice] == 1)
         {
-        	System.out.println("SERVIDOR-> No existe tal producto en la Tabla");
+        	System.out.println("SERVIDOR-> No existe tal producto en la Tabla, ya que fue borrado");
         }
         else
         {
@@ -318,6 +350,18 @@ public class TablaHashProducto
 		Tabla.Insertar(13244431, "Pepinillo4", "Chapina4", 1.50, "where4");
 		Tabla.Insertar(13244421, "Pepinillo4", "Chapina4", 1.50, "where4");
 		Tabla.Insertar(13244422, "Pepinillo4", "Chapina4", 1.50, "where4");
+		
+		Tabla.Insertar(21341486, "Pepinillo5", "Chapina5", 1.50, "where5");
+		Tabla.Insertar(21341437, "Pepinillo5", "Chapina5", 1.50, "where5");
+		Tabla.Insertar(21341248, "Pepinillo5", "Chapina5", 1.50, "where5");
+		Tabla.Insertar(21341489, "Pepinillo5", "Chapina5", 1.50, "where5");
+		Tabla.Insertar(13245436, "Pepinillo4", "Chapina4", 1.50, "where4");
+		Tabla.Insertar(13264437, "Pepinillo4", "Chapina4", 1.50, "where4");
+		Tabla.Insertar(13274438, "Pepinillo4", "Chapina4", 1.50, "where4");
+		Tabla.Insertar(13264439, "Pepinillo4", "Chapina4", 1.50, "where4");
+		Tabla.Insertar(13247431, "Pepinillo4", "Chapina4", 1.50, "where4");
+		Tabla.Insertar(13246421, "Pepinillo4", "Chapina4", 1.50, "where4");
+		Tabla.Insertar(13245422, "Pepinillo4", "Chapina4", 1.50, "where4");
 		
 		System.out.println(Tabla.ObtBuscar(21341412).ObtNombre());
 		System.out.println(Tabla.ObtBuscar(12345456).ObtNombre());
