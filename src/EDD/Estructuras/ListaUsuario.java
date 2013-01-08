@@ -1,5 +1,9 @@
 package EDD.Estructuras;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
+
 
 public class ListaUsuario 
 {
@@ -128,5 +132,107 @@ public class ListaUsuario
             iterador = iterador.ObtNodoSiguiente();
         }
         System.out.println( "null" );
+    }
+    
+	/**
+	 * Metodo que Grafica la Lista
+	 * @param arbol
+	 * @param EsEspejo
+	 */
+	public void Graficar()
+	{
+		String Complemento = "";
+		
+		String sFicheroWriter = "GraficaLista.dot";    
+	    BufferedWriter Bwriter = null;
+		
+	    try 
+		{		         
+	    	Bwriter = new BufferedWriter(new FileWriter(sFicheroWriter));			    
+			
+	        Bwriter.write("digraph G\n");
+	        Bwriter.write("{\n");
+	        Bwriter.write("node [shape=record];label=\" Lista de Usuarios \";");
+	        
+	        NodoUsuario iteradorUsr = Cabeza;
+	        
+ 	    	while ( iteradorUsr != null ) 
+	        {
+ 	    		NodoDireccion iteradorDir = iteradorUsr.ObtDirecciones().ObtCabeza();
+ 	    		
+ 	 	    	while ( iteradorDir != null ) 
+ 		        {
+ 	 	    		Bwriter.write("Uno_0 -> Uno_1 ;\n");
+ 	 	    		Bwriter.write("Uno_1 -> Uno_0 ;\n");
+ 	 	    		Bwriter.write("Uno_0 [label=\"{Caja_1|1 Turnos|Libre}\"];\n"); 	 	    		
+ 	 	    		Bwriter.write("Uno_1 [label=\"{Caja_2|2 Turnos|Libre}\"];\n"); 	 	    		
+ 		        }
+ 	 	    	
+ 	 	    	NodoProductoxComprar iteradorPrxC = iteradorUsr.ObtProductosxComprar().ObtCabeza();
+ 	    		
+ 	 	    	while ( iteradorPrxC != null ) 
+ 		        {
+ 	 	    		
+ 		        }
+
+	        }
+	    	
+	        Bwriter.write("}\n");	     		    
+		}
+	    catch (Exception e) 
+		{
+			// TODO Auto-generated catch block
+	    	//log.error("Error en " + e.getMessage());
+			System.out.println( "Error en " + e.getMessage());
+		}		
+		finally 
+		{
+			try 
+			{
+				// Nuevamente aprovechamos el finally para 
+				// asegurarnos que se cierra el fichero.
+				if (Bwriter != null)
+				{
+					Bwriter.close();
+					
+			        ProcessBuilder pbuilder;
+				    
+					/*
+					 * Realiza la construccion del comando    
+					 * en la linea de comandos esto es: 
+					 * dot -Tpng -o archivo.png archivo.dot
+					 */
+					pbuilder = new ProcessBuilder( "dot", "-Tpng", "-o","GraficaLista.png" , sFicheroWriter );
+					pbuilder.redirectErrorStream( true );
+					//Ejecuta el proceso
+					pbuilder.start();
+					//log.info("SERVIDOR->Grafica Generada Exitosamente");
+					//System.out.println( "Grafica Generada Exitosamente");
+				}
+			} 
+			catch (Exception e) 
+			{
+				//log.error("Error en " + e.getMessage());
+				System.out.println( "Error en " + e.getMessage());
+			}
+		}
+	}	
+	
+    public NodoUsuario ObtCabeza()
+    {
+    	return Cabeza;
+    }
+    public void SetCabeza(NodoUsuario pCabeza)
+    {
+    	Cabeza = pCabeza;
+    }
+    
+    public NodoUsuario ObtFin()
+    {
+    	return Fin;
+    }
+    public void SetFin(NodoUsuario pFin)
+    {
+    	Fin = pFin;
     }
 }

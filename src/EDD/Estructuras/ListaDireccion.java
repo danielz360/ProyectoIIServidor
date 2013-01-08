@@ -3,8 +3,8 @@ package EDD.Estructuras;
 
 public class ListaDireccion 
 {
-	NodoDireccion Cabeza;
-	NodoDireccion Fin;
+	private NodoDireccion Cabeza;
+	private NodoDireccion Fin;
 	
 	/**Constructor*/
 	public ListaDireccion() 
@@ -128,5 +128,23 @@ public class ListaDireccion
             iterador = iterador.ObtNodoSiguiente();
         }
         System.out.println( "null" );
+    }
+    
+    public NodoDireccion ObtCabeza()
+    {
+    	return Cabeza;
+    }
+    public void SetCabeza(NodoDireccion pCabeza)
+    {
+    	Cabeza = pCabeza;
+    }
+    
+    public NodoDireccion ObtFin()
+    {
+    	return Fin;
+    }
+    public void SetFin(NodoDireccion pFin)
+    {
+    	Fin = pFin;
     }
 }

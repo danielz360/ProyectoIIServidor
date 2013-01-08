@@ -129,4 +129,22 @@ public class ListaProductosxComprar
         }
         System.out.println( "null" );
     }
+    
+    public NodoProductoxComprar ObtCabeza()
+    {
+    	return Cabeza;
+    }
+    public void SetCabeza(NodoProductoxComprar pCabeza)
+    {
+    	Cabeza = pCabeza;
+    }
+    
+    public NodoProductoxComprar ObtFin()
+    {
+    	return Fin;
+    }
+    public void SetFin(NodoProductoxComprar pFin)
+    {
+    	Fin = pFin;
+    }
 }

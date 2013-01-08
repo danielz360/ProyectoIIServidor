@@ -7,6 +7,8 @@ public class NodoUsuario
 	private NodoUsuario NodoSig;
 	private NodoUsuario NodoAnt;
 	private ListaDireccion Direcciones;
+	private ListaProductosxComprar ProductosxComprar;
+	//private ListaProductosxComprar ProductosxComprar;
 	
 	/**Constructor
 	 * @pNombre Nombre del Usuario
@@ -20,6 +22,7 @@ public class NodoUsuario
 		NickName = pNickName;
 		Contrasena = pContrasena;
 		Direcciones = pDirecciones;
+		ProductosxComprar = null;
 		NodoAnt = null;
 		NodoSig = null;
 	}
@@ -28,9 +31,18 @@ public class NodoUsuario
 	{
 		return Direcciones;
 	}
-	public void SetArbolContactos(ListaDireccion pDirecciones)
+	public void SetDirecciones(ListaDireccion pDirecciones)
 	{
 		Direcciones = pDirecciones;
+	}
+	
+	public ListaProductosxComprar ObtProductosxComprar()
+	{
+		return ProductosxComprar;
+	}
+	public void SetDirecciones(ListaProductosxComprar pProductosxComprar)
+	{
+		ProductosxComprar = pProductosxComprar;
 	}
 	
 	public NodoUsuario ObtNodoSiguiente()
